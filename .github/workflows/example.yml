@@ -9,7 +9,8 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: actions/checkout@v3
+      - uses: .
         id: check
         with:
           trigger: '#hello'
@@ -19,7 +20,8 @@ jobs:
   eyes:
     runs-on: ubuntu-latest
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: actions/checkout@v3
+      - uses: .
         id: check
         with:
           trigger: '#look'
@@ -32,7 +34,8 @@ jobs:
   rocket:
     runs-on: ubuntu-latest
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: actions/checkout@v3
+      - uses: .
         id: check
         with:
           trigger: '#deploy'
