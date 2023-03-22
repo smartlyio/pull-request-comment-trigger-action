@@ -4,24 +4,36 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dist": "npx -p @zeit/ncc ncc build index.js",
-    "format": "prettier --write '*.js' --tab-width=4"
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "package": "ncc build --source-map",
+    "all": "npm run build && npm run format && npm run lint && npm run package",
+    "version": "npm run build && npm run package && git add -- dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaredly/actions-testbed.git"
+    "url": "git+https://github.com/smartlyio/pull-request-comment-trigger.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jaredly/actions-testbed/issues"
+    "url": "https://github.com/smartlyio/pull-request-comment-trigger/issues"
   },
-  "homepage": "https://github.com/jaredly/actions-testbed#readme",
+  "homepage": "https://github.com/smartlyio/pull-request-comment-trigger#readme",
   "dependencies": {
-    "@actions/core": "^1.2.0",
-    "@actions/github": "^1.1.0",
-    "prettier": "^1.19.1",
-    "prettier-cli": "^0.1.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "16.18.18",
+    "@typescript-eslint/parser": "5.56.0",
+    "@vercel/ncc": "0.34.0",
+    "eslint": "8.36.0",
+    "eslint-plugin-github": "4.6.1",
+    "prettier": "2.8.6",
+    "typescript": "4.9.5"
   }
 }
