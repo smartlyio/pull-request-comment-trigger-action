@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: .
+      - uses: ./
         id: check
         with:
           trigger: '#hello'
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: .
+      - uses: ./
         id: check
         with:
           trigger: '#look'
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: .
+      - uses: ./
         id: check
         with:
           trigger: '#deploy'
