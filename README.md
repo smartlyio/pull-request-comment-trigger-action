@@ -22,7 +22,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: khan/pull-request-comment-trigger@v1.1.0
+      - uses: smartlyio/pull-request-comment-trigger-action@v1
         id: check
         with:
           trigger: '@deploy'
