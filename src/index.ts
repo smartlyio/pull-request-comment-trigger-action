@@ -23,6 +23,7 @@ async function run(): Promise<void> {
     return
   }
 
+  core.info(`Action triggered for ${context.eventName} event`)
   const body =
     (context.eventName === 'issue_comment'
       ? // For comments on pull requests
@@ -43,11 +44,22 @@ async function run(): Promise<void> {
   const {owner, repo} = context.repo
 
   const prefixOnly = core.getInput('prefix_only') === 'true'
-  if ((prefixOnly && !body.startsWith(trigger)) || !body.includes(trigger)) {
+  let found = false
+  if (prefixOnly) {
+    if (body.startsWith(trigger)) {
+      found = true
+    }
+  } else if (body.includes(trigger)) {
+    found = true
+  }
+
+  if (!found) {
+    core.info(`Trigger string not found: ${trigger}`)
     core.setOutput('triggered', 'false')
     return
   }
 
+  core.info(`Trigger string found: ${trigger}`)
   core.setOutput('triggered', 'true')
 
   if (!reaction) {
