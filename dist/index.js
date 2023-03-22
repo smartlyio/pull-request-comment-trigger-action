@@ -7,6 +7,29 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -16,37 +39,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(2186));
+const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
 function run() {
     var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function* () {
-        const trigger = core_1.default.getInput('trigger', { required: true });
-        const reaction = core_1.default.getInput('reaction');
+        const trigger = core.getInput('trigger', { required: true });
+        const reaction = core.getInput('reaction');
         const { GITHUB_TOKEN } = process.env;
         if (reaction && GITHUB_TOKEN == null) {
-            core_1.default.setFailed('If "reaction" is supplied, GITHUB_TOKEN is required');
+            core.setFailed('If "reaction" is supplied, GITHUB_TOKEN is required');
             return;
         }
-        core_1.default.info(`Action triggered for ${github_1.context.eventName} event`);
+        core.info(`Action triggered for ${github_1.context.eventName} event`);
         const body = (github_1.context.eventName === 'issue_comment'
             ? // For comments on pull requests
                 (_a = github_1.context.payload.comment) === null || _a === void 0 ? void 0 : _a.body
             : // For the initial pull request description
                 (_b = github_1.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.body) || '';
-        core_1.default.setOutput('comment_body', body);
+        core.setOutput('comment_body', body);
         if (github_1.context.eventName === 'issue_comment' &&
             !((_d = (_c = github_1.context.payload) === null || _c === void 0 ? void 0 : _c.issue) === null || _d === void 0 ? void 0 : _d.pull_request)) {
             // not a pull-request comment, aborting
-            core_1.default.setOutput('triggered', 'false');
+            core.setOutput('triggered', 'false');
             return;
         }
         const { owner, repo } = github_1.context.repo;
-        const prefixOnly = core_1.default.getInput('prefix_only') === 'true';
+        const prefixOnly = core.getInput('prefix_only') === 'true';
         let found = false;
         if (prefixOnly) {
             if (body.startsWith(trigger)) {
@@ -57,12 +77,12 @@ function run() {
             found = true;
         }
         if (!found) {
-            core_1.default.info(`Trigger string not found: ${trigger}`);
-            core_1.default.setOutput('triggered', 'false');
+            core.info(`Trigger string not found: ${trigger}`);
+            core.setOutput('triggered', 'false');
             return;
         }
-        core_1.default.info(`Trigger string found: ${trigger}`);
-        core_1.default.setOutput('triggered', 'true');
+        core.info(`Trigger string found: ${trigger}`);
+        core.setOutput('triggered', 'true');
         if (!reaction) {
             return;
         }
@@ -97,7 +117,7 @@ function main() {
             yield run();
         }
         catch (err) {
-            core_1.default.setFailed(`Unexpected error: ${err}`);
+            core.setFailed(`Unexpected error: ${err}`);
         }
     });
 }
