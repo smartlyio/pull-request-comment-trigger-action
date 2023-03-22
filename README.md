@@ -2,8 +2,6 @@
 
 Look for a "trigger word" in a pull-request description or comment, so that later steps can know whether or not to run.
 
-<!-- TODO release workflow-preprocessor This is most useful in tandem with [workflow-preprocessor], so that you don't have to be writing a ton of `if`s all down the line. -->
-
 ## Example usage in a workflow
 
 Your workflow needs to listen to the following events:
