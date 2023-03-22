@@ -20,7 +20,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: smartlyio/pull-request-comment-trigger-action@v1
+      - uses: smartlyio/pull-request-comment-trigger-action@v2
         id: check
         with:
           trigger: '@deploy'
