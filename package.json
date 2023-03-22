@@ -20,9 +20,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jaredly/actions-testbed/issues"
+    "url": "https://github.com/smartlyio/pull-request-comment-trigger/issues"
   },
-  "homepage": "https://github.com/jaredly/actions-testbed#readme",
+  "homepage": "https://github.com/smartlyio/pull-request-comment-trigger#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1"
