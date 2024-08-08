@@ -9,7 +9,7 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+      - uses: actions/checkout@v4
       - uses: ./
         id: check
         with:
@@ -20,7 +20,7 @@ jobs:
   eyes:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+      - uses: actions/checkout@v4
       - uses: ./
         id: check
         with:
@@ -34,7 +34,7 @@ jobs:
   rocket:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+      - uses: actions/checkout@v4
       - uses: ./
         id: check
         with:
